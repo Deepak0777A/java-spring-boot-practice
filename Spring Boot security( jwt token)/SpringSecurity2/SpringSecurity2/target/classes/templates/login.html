@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <style>
+        body {
+            background: #e5e5e5;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            width: 330px;
+            margin: 120px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 92%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #888;
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #0077ff;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #005fcc;
+        }
+        .error {
+            margin-top: 10px;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <!-- Spring Security will POST here -->
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="Enter Username" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
+
+        <!-- Show message if login failed -->
+        <div th:if="${param.error}" class="error">
+            Invalid username or password
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
